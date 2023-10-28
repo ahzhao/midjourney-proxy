@@ -58,7 +58,7 @@ public class DiscordServiceImpl implements DiscordService {
 				.replace("$index", String.valueOf(index))
 				.replace("$message_hash", messageHash);
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
-				log.debug("byzhao,{}", paramsStr);
+		log.debug("byzhao,{}", paramsStr);
 		return postJsonAndCheckStatus(paramsStr);
 	}
 
@@ -188,12 +188,14 @@ public class DiscordServiceImpl implements DiscordService {
 		headers.set("Authorization", this.account.getUserToken());
 		headers.set("User-Agent", this.account.getUserAgent());
 		HttpEntity<String> httpEntity = new HttpEntity<>(paramsStr, headers);
+		log.debug("byzhao:postForEntity,{},{}", url,paramsStr);
 		return this.restTemplate.postForEntity(url, httpEntity, String.class);
 	}
 
 	private Message<Void> postJsonAndCheckStatus(String paramsStr) {
 		try {
 			ResponseEntity<String> responseEntity = postJson(paramsStr);
+			log.debug("byzhao:responseEntity,{},{}", responseEntity);
 			if (responseEntity.getStatusCode() == HttpStatus.NO_CONTENT) {
 				return Message.success();
 			}
