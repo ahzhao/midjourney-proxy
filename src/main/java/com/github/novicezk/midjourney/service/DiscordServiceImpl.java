@@ -195,7 +195,7 @@ public class DiscordServiceImpl implements DiscordService {
 	private Message<Void> postJsonAndCheckStatus(String paramsStr) {
 		try {
 			ResponseEntity<String> responseEntity = postJson(paramsStr);
-			log.debug("byzhao:responseEntity,{},{}", responseEntity);
+			log.debug("byzhao:responseEntity,{},{}", responseEntity,responseEntity.getBody());
 			if (responseEntity.getStatusCode() == HttpStatus.NO_CONTENT) {
 				return Message.success();
 			}

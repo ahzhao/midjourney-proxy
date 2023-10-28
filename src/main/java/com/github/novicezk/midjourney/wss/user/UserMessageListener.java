@@ -23,6 +23,7 @@ public class UserMessageListener {
 
 	public void onMessage(DataObject raw) {
 		MessageType messageType = MessageType.of(raw.getString("t"));
+		log.debug("byzhao:onMessage,{}",raw.toString());
 		if (messageType == null || MessageType.DELETE == messageType) {
 			return;
 		}
