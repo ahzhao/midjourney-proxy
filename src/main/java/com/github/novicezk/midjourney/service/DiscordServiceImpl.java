@@ -58,6 +58,7 @@ public class DiscordServiceImpl implements DiscordService {
 				.replace("$index", String.valueOf(index))
 				.replace("$message_hash", messageHash);
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
+				log.debug("byzhao,{}", paramsStr);
 		return postJsonAndCheckStatus(paramsStr);
 	}
 
