@@ -13,7 +13,7 @@ public interface DiscordService {
 
 	Message<Void> upscale(String messageId, int index, String messageHash, int messageFlags, String nonce);
 
-	Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce);
+	Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isV6);
 
 	Message<Void> reroll(String messageId, String messageHash, int messageFlags, String nonce);
 

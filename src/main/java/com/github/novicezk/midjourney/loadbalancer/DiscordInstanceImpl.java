@@ -174,8 +174,8 @@ public class DiscordInstanceImpl implements DiscordInstance {
 	}
 
 	@Override
-	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce) {
-		return this.service.variation(messageId, index, messageHash, messageFlags, nonce);
+	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isV6) {
+		return this.service.variation(messageId, index, messageHash, messageFlags, nonce,isV6);
 	}
 
 	@Override

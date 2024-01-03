@@ -63,11 +63,14 @@ public class DiscordServiceImpl implements DiscordService {
 	}
 
 	@Override
-	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce) {
+	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isV6) {
 		String paramsStr = replaceInteractionParams(this.paramsMap.get("variation"), nonce)
 				.replace("$message_id", messageId)
 				.replace("$index", String.valueOf(index))
 				.replace("$message_hash", messageHash);
+		if(isV6){
+			paramsStr.replace("MJ::JOB::upsample_v5_2x::"," MJ::JOB::upsample_v6_2x_subtle::");
+		}
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
 		return postJsonAndCheckStatus(paramsStr);
 	}
