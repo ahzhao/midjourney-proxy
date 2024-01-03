@@ -32,6 +32,8 @@ import eu.maxschuster.dataurl.IDataUrlSerializer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +51,7 @@ import java.util.regex.Pattern;
 @RestController
 @RequestMapping("/submit")
 @RequiredArgsConstructor
+@Slf4j
 public class SubmitController {
 	private final TranslateService translateService;
 	private final TaskStoreService taskStoreService;
@@ -146,6 +149,8 @@ public class SubmitController {
 		task.setProperty(Constants.TASK_PROPERTY_PROGRESS_MESSAGE_ID, targetTask.getProperty(Constants.TASK_PROPERTY_MESSAGE_ID));
 		task.setProperty(Constants.TASK_PROPERTY_DISCORD_INSTANCE_ID, targetTask.getProperty(Constants.TASK_PROPERTY_DISCORD_INSTANCE_ID));
 		task.setDescription(description);
+		//打印一下PROMPT
+		log.warn("描述:PROMPT {}", targetTask.getProperty(Constants.TASK_PROPERTY_FINAL_PROMPT));
 		int messageFlags = targetTask.getPropertyGeneric(Constants.TASK_PROPERTY_FLAGS);
 		String messageId = targetTask.getPropertyGeneric(Constants.TASK_PROPERTY_MESSAGE_ID);
 		String messageHash = targetTask.getPropertyGeneric(Constants.TASK_PROPERTY_MESSAGE_HASH);
