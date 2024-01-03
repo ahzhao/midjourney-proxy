@@ -9,6 +9,6 @@
   "message_flags": 0,
   "data": {
     "component_type": 2,
-    "custom_id": "MJ::JOB::upsample_v5_2x::$index::$message_hash::SOLO"
+    "custom_id": "MJ::JOB::$upsample_x::$index::$message_hash::SOLO"
   }
 }

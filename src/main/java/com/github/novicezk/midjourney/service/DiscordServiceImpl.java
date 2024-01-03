@@ -69,7 +69,9 @@ public class DiscordServiceImpl implements DiscordService {
 				.replace("$message_hash", messageHash);
 		if(isV6){
 			log.debug("isV6:{},paramsStr:{}",isV6,paramsStr);
-			paramsStr.replace("MJ::JOB::upsample_v5_2x::"," MJ::JOB::upsample_v6_2x_subtle::");
+			paramsStr.replace("$upsample_x","upsample_v6_2x_subtle");
+		}else{
+			paramsStr.replace("$upsample_x","upsample_v5_2x");
 		}
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
 		log.debug("sumbit,paramsStr:{}",isV6,paramsStr);
