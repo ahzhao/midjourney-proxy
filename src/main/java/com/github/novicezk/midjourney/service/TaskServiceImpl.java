@@ -74,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
 			return SubmitResultVO.fail(ReturnCode.NOT_FOUND, "账号不可用: " + instanceId);
 		}
 		boolean isV6 = task.getProperty(Constants.TASK_PROPERTY_FINAL_PROMPT).toString().indexOf("--v 6.0")>0;
-		log.warn("描述:PROMPT {},isV6", task.getProperty(Constants.TASK_PROPERTY_FINAL_PROMPT),isV6);
+		log.warn("描述:PROMPT {},isV6,{}", task.getProperty(Constants.TASK_PROPERTY_FINAL_PROMPT),isV6);
 			
 		return discordInstance.submitTask(task, () -> discordInstance.variation(targetMessageId, index, targetMessageHash, messageFlags, task.getPropertyGeneric(Constants.TASK_PROPERTY_NONCE),isV6));
 	}
