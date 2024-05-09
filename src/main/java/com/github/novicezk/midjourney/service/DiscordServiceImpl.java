@@ -185,15 +185,21 @@ public class DiscordServiceImpl implements DiscordService {
 	}
 
 	private ResponseEntity<String> postJson(String url, String paramsStr) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("Authorization", this.account.getUserToken());
-		headers.set("User-Agent", this.account.getUserAgent());
-		HttpEntity<String> httpEntity = new HttpEntity<>(paramsStr, headers);
-		log.debug("byzhao:postForEntity,{},{}", url,paramsStr);
-		ResponseEntity<String> res = this.restTemplate.postForEntity(url, httpEntity, String.class);
-		log.debug("byzhao:ResponseEntity,{}", res.getBody());
-		return res;
+		try{
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			headers.set("Authorization", this.account.getUserToken());
+			headers.set("User-Agent", this.account.getUserAgent());
+			HttpEntity<String> httpEntity = new HttpEntity<>(paramsStr, headers);
+			log.debug("byzhao:postForEntity,{},{}", url,paramsStr);
+			ResponseEntity<String> res = this.restTemplate.postForEntity(url, httpEntity, String.class);
+			log.debug("byzhao:ResponseEntity,{}", res.getBody());
+			return res;
+		}catch(Exception e){
+			log.debug("byzhao:Exception,{}", e.getMessage());
+		}
+		return null;
+		
 	}
 
 	private Message<Void> postJsonAndCheckStatus(String paramsStr) {
