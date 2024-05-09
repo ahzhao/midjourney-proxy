@@ -192,7 +192,7 @@ public class DiscordServiceImpl implements DiscordService {
 		HttpEntity<String> httpEntity = new HttpEntity<>(paramsStr, headers);
 		log.debug("byzhao:postForEntity,{},{}", url,paramsStr);
 		ResponseEntity<String> res = this.restTemplate.postForEntity(url, httpEntity, String.class);
-		log.debug("byzhao:ResponseEntity,{}", res);
+		log.debug("byzhao:ResponseEntity,{}", res.getBody());
 		return res;
 	}
 
