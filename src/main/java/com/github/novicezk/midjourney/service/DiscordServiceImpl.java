@@ -191,7 +191,9 @@ public class DiscordServiceImpl implements DiscordService {
 		headers.set("User-Agent", this.account.getUserAgent());
 		HttpEntity<String> httpEntity = new HttpEntity<>(paramsStr, headers);
 		log.debug("byzhao:postForEntity,{},{}", url,paramsStr);
-		return this.restTemplate.postForEntity(url, httpEntity, String.class);
+		ResponseEntity<String> res = this.restTemplate.postForEntity(url, httpEntity, String.class);
+		log.debug("byzhao:ResponseEntity,{}", res);
+		return res;
 	}
 
 	private Message<Void> postJsonAndCheckStatus(String paramsStr) {
