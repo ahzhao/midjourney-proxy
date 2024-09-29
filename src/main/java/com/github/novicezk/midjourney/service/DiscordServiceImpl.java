@@ -63,6 +63,7 @@ public class DiscordServiceImpl implements DiscordService {
 
 	@Override
 	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isV6) {
+		isV6=true;//现在都是v6
 		String paramsStr = replaceInteractionParams(this.paramsMap.get("variation"), nonce)
 				.replace("$message_id", messageId)
 				.replace("$index", String.valueOf(index))
