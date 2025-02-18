@@ -62,14 +62,13 @@ public class DiscordServiceImpl implements DiscordService {
 	}
 
 	@Override
-	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isV6) {
-		isV6=true;//现在都是v6
+	public Message<Void> variation(String messageId, int index, String messageHash, int messageFlags, String nonce,boolean isNiji6) {
 		String paramsStr = replaceInteractionParams(this.paramsMap.get("variation"), nonce)
 				.replace("$message_id", messageId)
 				.replace("$index", String.valueOf(index))
 				.replace("$message_hash", messageHash);
 		// log.debug("isV6:{},paramsStr:{}",isV6,paramsStr);
-		paramsStr = paramsStr.replace("$upsample_x",isV6?"upsample_v6r1_2x_subtle":"upsample_v5_2x");
+		paramsStr = paramsStr.replace("$upsample_x",isNiji6?"upsample_v6_2x_subtle":"upsample_v6r1_2x_subtle");
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
 		log.debug("sumbit,paramsStr:{}",isV6,paramsStr);
 		return postJsonAndCheckStatus(paramsStr);
