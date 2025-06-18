@@ -70,7 +70,7 @@ public class DiscordServiceImpl implements DiscordService {
 		// log.debug("isV6:{},paramsStr:{}",isV6,paramsStr);
 		paramsStr = paramsStr.replace("$upsample_x",isV6?"upsample_v6_2x_subtle":"upsample_v6r1_2x_subtle");
 		paramsStr = new JSONObject(paramsStr).put("message_flags", messageFlags).toString();
-		log.debug("sumbit,paramsStr:{}",isV6,paramsStr);
+		// log.debug("sumbit,paramsStr:{}",isV6,paramsStr);
 		return postJsonAndCheckStatus(paramsStr);
 	}
 
